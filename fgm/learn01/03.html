@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>函数接收参数并弹出</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+           
+        }
+
+    	.container{
+            height: 100px;
+            width:300px;
+            margin:0 auto;
+            text-align: center;
+        }
+        input,button{
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        
+
+	</style>
+
+</head>
+<body>
+    <div class="container">
+		<p><input type="text" value="山东省"></p>
+		<p><input type="text" value="济南市"></p>
+		<p><button>GO</button></p>
+		
+		
+    </div>
+    <script type="text/javascript">
+    	var myFn = function(a,b)
+        {
+            alert(a.value);
+            alert(b.value);
+        };
+        window.onload=function(){
+            var oInput=document.getElementsByTagName("input");
+            var oBtn=document.getElementsByTagName("button")[0];
+            oBtn.onclick=function(){
+                myFn(oInput[0],oInput[1]);
+            }
+
+        }
+
+    </script>
+</body>
+</html>
