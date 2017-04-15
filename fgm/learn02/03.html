@@ -1,0 +1,64 @@
+/*bug 虽然只能输入数字和半角 ,  但是随意输入 ， 会导致输出NAN ，没有修正的必要*/
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>求出数组中所有数字的和</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#container{
+			width: 800px;
+			height: 300px;
+			margin:50px auto;
+		}
+		input{
+			width: 300px;
+		}
+		span{
+			color: #212121;
+		}
+		p{
+			margin: 20px 0;
+		}
+		button{
+			width:50px;
+			height: 30px;
+			font-size: 18px;
+		}
+		strong{
+			color:red;
+			font-size: 28px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<label><input type="text" name="text" value="1,2,3,4">
+			<span>输入数字求和，数字之间用半角“ , ”号分割</span>
+		</label>
+		<p><button>求和</button></p>
+		<strong class="sum"></strong>
+	</div>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oBtn=document.getElementsByTagName("button")[0];
+			var oInput=document.getElementsByTagName("input")[0];
+			var oStrong=document.getElementsByTagName("strong")[0];
+			oInput.onkeyup=function(){
+				this.value=this.value.replace(/[^(\d)|(,)]/,"");
+			};
+			oBtn.onclick=function(){
+				var sum=0;
+				var oInput=document.getElementsByTagName("input")[0].value.split(",");
+				for(var i in oInput){
+					sum+=parseInt(oInput[i])
+				}
+				oStrong.innerHTML=sum;
+			}
+		}
+	</script>
+</body>
+</html>
