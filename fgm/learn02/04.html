@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<meta charset="utf-8">
+	<title>弹出层效果</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		height: 100%;
+		width:100%;
+	}
+	button{
+		width: 40px;
+		height: 30px;
+		font-size: 16px;
+		margin:50px 48%;
+		cursor: pointer;
+	}
+	#overlay{
+		position: absolute;
+		background-color: rgba(21,21,21,0.7);
+		width: 100%;
+		height: 100%;
+	}
+	#win{
+		position: absolute;
+		left: 40%;
+		top:20%;
+		width: 300px;
+		height: 200px;
+		border:5px solid #f00; 
+		background-color: #fff;
+	}
+	h2{
+		border-bottom: 4px solid #f00;
+		background-color: #0ff;
+        text-align: right;
+        vertical-align: middle;
+	}
+	span{
+		background-color: #fff;
+		color:212121;
+		cursor: pointer;
+	}
+	</style>
+</head>
+<body>
+	
+	<div id="overlay" style="display:none"></div>
+	<div id="win" style="display:none">
+		<h2><span id="close">×</span></h2>
+	</div>
+	<button>弹出</button>
+	<script type="text/javascript">
+	window.onload=function(){
+		var oWin=document.getElementById('win');
+		var oLay=document.getElementById("overlay");
+		var oBtn=document.getElementsByTagName('button')[0];
+		var oClose=document.getElementById("close");
+		oBtn.onclick=function(){
+			oLay.style.display="block";
+			oWin.style.display="block";
+		}
+		oClose.onclick=function(){
+			oLay.style.display="none";
+			oWin.style.display="none";
+		}
+	}
+	</script>
+</body>
+</html>
