@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>提示框效果</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+
+		}
+		#container{
+			width: 570px;
+			height: 300px;
+			margin:30px auto;
+			border: 1px solid black;
+			text-align: center;
+		}
+		h2{
+			margin-top: 20px;
+		}
+		ul{
+			list-style: none;
+
+		}
+		li{
+			position: relative;
+			width:100px;
+			height: 100px;
+			float: left;
+			border: 1px solid black;
+			background: #ced3d7;
+			margin-left: 10px;
+			margin-top: 10px;
+		}
+		li strong{
+			padding-top:20px;
+			padding-bottom: 10px;
+			display: block;
+		}
+		li a{
+			display: inline-block;
+			height: 100px;
+			width: 100px;
+			color:black;
+			text-decoration: none;
+		}
+		p{
+			position: absolute;
+			top:-14px;
+			left:-14px;
+			height: 130px;
+			width: 130px;
+			background: white;
+			border: 2px solid black; 
+
+		}
+		.zindex{
+			z-index: 1;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<h2>鼠标移动效果</h2>
+		<ul>
+			<li><a href="#"><strong>1</strong>1111</a><p style="display:none">1212</p></li>
+			<li><a href="#"><strong>1</strong>1111</a><p style="display:none">1212</p></li>
+			<li><a href="#"><strong>1</strong>1111</a><p style="display:none">1212</p></li>
+			<li><a href="#"><strong>1</strong>1111</a><p style="display:none">1212</p></li>
+			<li><a href="#"><strong>1</strong>1111</a><p style="display:none">1212</p></li>
+			<li><a href="#"><strong>1</strong>1111</a><p style="display:none">1212</p></li>
+			<li><a href="#"><strong>1</strong>1111</a><p style="display:none">1212</p></li>
+			<li><a href="#"><strong>1</strong>1111</a><p style="display:none">1212</p></li>
+			<li><a href="#"><strong>1</strong>1111</a><p style="display:none">1212</p></li>
+			<li><a href="#"><strong>1</strong>1111</a><p style="display:none">1212</p></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oLi=document.getElementsByTagName('li');
+			var oA=document.getElementsByTagName("a");
+			var oP=document.getElementsByTagName("p");
+			for(var i=0;i<oLi.length;i++){
+				oA[i].index=oP[i].index=i;
+				oA[i].onmouseover=function(){
+					oLi[this.index].className="zindex";
+					oP[this.index].style.display="block";
+				};
+				oA[i].onmouseout=function(){
+					oLi[this.index].className="";
+					oP[this.index].style.display="none";
+				};
+				oP[i].onmouseover=function(){
+					oLi[this.index].className="zindex";
+					oP[this.index].style.display="block";
+				};
+				oP[i].onmouseout=function(){
+					oLi[this.index].className="";
+					oP[this.index].style.display="none";
+				};
+
+
+
+			}
+		}
+
+	</script>
+</body>
+</html>
