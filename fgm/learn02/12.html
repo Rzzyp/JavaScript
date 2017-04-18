@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>复选框全选与全不选</title>
+	<style type="text/css">
+	*{
+		margin:0;
+		padding: 0;
+	}
+	dl{
+		margin:30px auto;
+		width:150px;
+		vertical-align: middle;
+		border:1px solid black;
+		border-radius: 5px;
+		padding:0 20px;
+	}
+	dt{
+		margin-top: 10px;
+		border-bottom: 1px solid black;
+	}
+	dt a{
+		text-decoration: none;
+		margin-left: 30px;
+	}
+	dd p{
+		margin-top: 20px;
+	}
+	#message{
+		margin-left: 40%;
+	}
+	</style>
+</head>
+<body>
+	<dl>
+		<dt><input type="checkbox" name="all"> <label>全选</label><a href="#">反选</a></dt>
+		<dd>
+			<p><input type="checkbox" name="check"><label>选项1</label></p>
+			<p><input type="checkbox" name="check"><label>选项2</label></p>
+			<p><input type="checkbox" name="check"><label>选项3</label></p>
+			<p><input type="checkbox" name="check"><label>选项4</label></p>
+			<p><input type="checkbox" name="check"><label>选项5</label></p>
+			<p><input type="checkbox" name="check"><label>选项6</label></p>
+			<p><input type="checkbox" name="check"><label>选项7</label></p>
+			<p><input type="checkbox" name="check"><label>选项8</label></p>
+			<p><input type="checkbox" name="check"><label>选项9</label></p>
+		</dd>
+	</dl>
+	<p id="message">1、切换全选/全不选文字；2、根据选中个数更新全选框状态；</p>
+	<script type="text/javascript">
+		
+window.onload = function ()
+{
+	var oA = document.getElementsByTagName("a")[0];	
+	var oInput = document.getElementsByTagName("input");
+	var oLabel = document.getElementsByTagName("label")[0];
+	var isCheckAll = function ()
+	{
+		for (var i = 1, n = 0; i < oInput.length; i++)
+		{
+			oInput[i].checked && n++	
+		}
+		oInput[0].checked = n == oInput.length - 1;
+		oLabel.innerHTML = oInput[0].checked ? "全不选" : "全选"
+	};
+	//全选/全不选
+	oInput[0].onclick = function ()
+	{
+		for (var i = 1; i < oInput.length; i++)
+		{
+			oInput[i].checked = this.checked			
+		}
+		isCheckAll()
+	};
+	//反选
+	oA.onclick = function ()
+	{
+		for (var i = 1; i < oInput.length; i++)
+		{
+			oInput[i].checked = !oInput[i].checked
+		}
+		isCheckAll()
+	};
+	//根据复选个数更新全选框状态
+	for (var i = 1; i < oInput.length; i++)
+	{
+		oInput[i].onclick = function ()
+		{
+			isCheckAll()
+		}	
+	}	
+}
+
+	</script>
+</body>
+</html>
