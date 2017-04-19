@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>简易网页时钟</title>
+	<style type="text/css">
+		*{
+			color:white;
+			margin:0;
+			padding: 0;
+		}
+		#container{
+			margin:30px auto;
+			width: 400px;
+			
+			text-align: center;
+			background: black;
+			padding:30px 0;
+		}
+		
+		span{
+			
+			background: white;
+			border: 2px solid #ccc;
+			margin:0px 10px;
+			padding: 0 10px;
+			width: 40px;
+			
+			color:black;
+
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<span></span>点<span></span>分<span></span>秒
+	</div>
+	<script type="text/javascript">
+	window.onload=function(){
+		var oDiv=document.getElementById('container');
+		var oSpan=document.getElementsByTagName('span');
+		setInterval(getTimes,1000);
+		getTimes();
+		function getTimes(){
+			var oDate=new Date();
+			var aDate=[oDate.getHours(),oDate.getMinutes(),oDate.getSeconds()];
+			for (var i in aDate) {
+				oSpan[i].innerHTML=format(aDate[i]);
+			}
+		}
+		function format(a){
+			return a.toString().replace(/^(\d)$/,"0$1")
+		}
+	}
+	</script>
+</body>
+</html>
