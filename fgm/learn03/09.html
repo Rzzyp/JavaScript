@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>倒计时时钟</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#clock{
+			margin:30px auto;
+			width: 300px;
+			background-color: black;
+			color:white;
+			padding: 20px 0;
+		}
+		p{
+			text-align: center;
+		}
+		span{
+			padding: 0 10px;
+			background-color: white;
+			border: 2px solid #ccc;
+			margin:0 10px;
+			color: black;
+		}
+		button{
+			margin-left:25px;
+			margin-top: 20px;
+			width: 250px;
+			height: 50px;
+			background: green;
+			color: white;
+			font-size: 18px;
+			border-radius: 10px;
+			border: 2px solid #212121;
+
+		}
+		.stop{
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="clock">
+		<p><span>01</span>分钟<span>40</span>秒</p>
+		<button class="">启动</button>
+	</div>
+	<script type="text/javascript">
+	window.onload=function(){
+		var oSpan=document.getElementsByTagName('span');
+		var btn=document.getElementsByTagName("button")[0];
+		var timer=null;
+		btn.onclick=function()
+		{
+			this.className==""?(timer=setInterval(updateTime,1000),updateTime()):(clearInterval(timer));
+			this.className=this.className==""?"stop":"";
+			this.innerHTML=this.className==""?"启动":"暂停";
+		};
+		function format(a)
+		{
+			return a.toString().replace(/^(\d)$/,"0$1")
+		}
+		function updateTime(){
+			var oremain=oSpan[0].innerHTML.replace(/^0/,"")*60+
+			parseInt(oSpan[1].innerHTML.replace(/^0/,""));
+			if(oremain<=0){
+				clearInterval(timer);
+				return;
+
+			}
+			oremain--;
+			oSpan[0].innerHTML=format(parseInt(oremain/60));
+			oremain %=60;
+			oSpan[1].innerHTML=format(parseInt(oremain));
+		}
+
+	}
+	</script>
+</body>
+</html>
