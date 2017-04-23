@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>css函数-设置/读取对象属性</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#container{
+			width: 400px;
+			height: 200px;
+			background: #fef4eb;
+			border: 1px solid #f60;
+			margin:30px auto;
+		}
+		button{
+			border: 0;
+			color: #fff;
+			background-color: #f60;
+			padding: 2px 4px;
+			margin:10px 0 0 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<button>Get Style</button>
+		<button>Set Style</button>
+		<button>Default Style</button>
+	</div>
+	<script type="text/javascript">
+	function css(obj,attr,value){
+		switch(arguments.length){
+			case 2:
+			if(typeof arguments[1]=="object")
+			{
+				for(var i in attr) obj.style[i]=attr[i];
+			}
+			else{
+				return obj.currentStyle ? obj.currentStyle[attr]:
+				getComputedStyle(obj,null)[attr]
+			}
+			break;
+			case 3:
+			obj.style[attr]=value;
+			break;
+			default:alert("参数错误！");
+
+		}
+
+	}
+	window.onload=function(){
+		var Odiv=document.getElementById("container");
+		var btn=document.getElementsByTagName('button');
+		btn[0].onclick=function(){
+			alert("width:"+css(Odiv,"width")+"\n height:"+css(Odiv,"height")+
+			"\n background-color: "+css(Odiv,"backgroundColor"));
+		};
+		btn[1].onclick=function(){
+			css(Odiv,{width: "330px", height: "100px", borderColor: "#0084ff", backgroundColor: "#eff8ff"});
+			for(i=0;i<btn.length;i++) css(btn[i],"backgroundColor","#0084ff")
+		}
+		btn[2].onclick=function(){
+			css(Odiv,{width: "400px", height: "200px", borderColor: "#f60", backgroundColor: "#fef4eb"});
+			for(i=0;i<btn.length;i++) css(btn[i],"backgroundColor","#f60")
+		}
+
+	}
+	</script>
+</body>
+</html>
