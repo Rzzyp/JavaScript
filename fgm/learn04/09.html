@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>星级评分系统</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#star{
+			position: relative;
+			width: 600px;
+			margin:20px auto;
+		}
+		ul{
+			position: absolute;
+			left:140px;
+			top:0px;
+		}
+		li{
+			float:left;
+			margin:0px 3px;
+			list-style: none;
+			background: url(star.png) no-repeat;
+			width:24px;
+			height:24px;
+			cursor: pointer;
+		}
+		p{
+			position: absolute;
+			width: 200px;
+			font-size: 12px;
+			border:1px solid red;
+		}
+		p em{
+			display: block;
+			color: red;
+			left:0;
+		}
+		li.on{
+			background-position: 0 -28px;
+		}
+		#show{
+			position: absolute;
+			left:300px;
+			font-size: 12px;
+		}
+	</style>
+</head>
+<body>
+	<div id="star">
+		<span>点击星星就能打分</span>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<span id="show"></span>
+		<p style="display:none"></p>
+
+	</div>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oStar=document.getElementById('star');
+			var ali=document.getElementsByTagName('li');
+			var aul=document.getElementsByTagName('ul')[0];
+			var oSpan=document.getElementsByTagName('span')[1];
+			var oP=document.getElementsByTagName("p")[0];
+			var i=iscore=istar=0;
+			var aMsg = [
+				"很不满意|差得太离谱，与卖家描述的严重不符，非常不满",
+				"不满意|部分有破损，与卖家描述的不符，不满意",
+				"一般|质量一般，没有卖家描述的那么好",
+				"满意|质量不错，与卖家描述的基本一致，还是挺满意的",
+				"非常满意|质量非常好，与卖家描述的完全一致，非常满意"
+				];
+			function fnPoint(iArg){
+				iscore=iArg||istar;
+				for(i=0;i<ali.length;i++) ali[i].className=i<iscore?"on":"";
+			}
+			for(i=1;i<=ali.length;i++)
+			{
+				ali[i-1].index=i;
+				ali[i-1].onmouseover=function(){
+					fnPoint(this.index);
+					oP.style.display="block";
+					oP.style.left=aul.offsetLeft+this.index*this.offsetWidth-104+"px";
+					oP.innerHTML = "<em><b>" + this.index + "</b> 分 " + aMsg[this.index - 1].match(/(.+)\|/)[1] + "</em>" + aMsg[this.index - 1].match(/\|(.+)/)[1];
+		
+				};
+				ali[i-1].onmouseout=function(){
+					fnPoint();
+					oP.style.display="none";
+				}
+				ali[i-1].onclick=function(){
+					istar=this.index;
+					oP.style.display="none";
+					oSpan.innerHTML="<strong>" + (this.index) + " 分</strong> (" + aMsg[this.index - 1].match(/\|(.+)/)[1] + ")";
+				};
+			};
+
+		}
+	</script>
+</body>
+</html>
