@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>数组练习</title>
+	<style type="text/css">
+		p{
+			border:1px solid black;
+			color:#212121;
+			padding: 10px 20px ;
+			font-size: 10px;
+			word-wrap: break-word;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<p>January(1),February(2),March(3),April(4),May(5),June(6),July(7),Aguest(8),September(9),October(10),November(11),December(12)
+		</p>
+		<input type="button" name="btn1" value="删除January(1)">
+		<input type="button" name="btn2" value="删除December(12)">
+		<p>0,1,2,3,4,5,6,7,8,9</p>
+		<input type="button" name="btn3" value="复制">
+		<input type="button" name="btn4" value="还原">
+		<p>red,green,blue,white,yellow,black,brown</p>
+		<input type="button" name="btn5" value="还原">
+		<input type="button" name="btn6" value="删除前三项">
+		<input type="button" name="btn7" value="删除第二至三项">
+		<input type="button" name="btn8" value="在第二项后插入（orange，purple）">
+		<input type="button" name="btn9" value="替换第二项和第三项">
+	</div>
+	<script type="text/javascript">
+	 window.onload=function(){
+	 	var Op=document.getElementsByTagName('p');
+	 	var btn=document.getElementsByTagName("input");
+	 	var i=0;
+	 	var b1=b2=true;
+	 	var aTmp=[];
+	 	function getArray(str)
+	 	{
+	 		aTmp.length=0;
+	 		str=str.split(",");
+	 		for(var i in str) aTmp.push(str[i]);
+	 		return aTmp; 
+	 	};
+	 	btn[0].onclick=function(){
+	 		aTmp=getArray(Op[0].innerHTML);
+	 		b1?
+	 		(aTmp.shift(),this.value=this.value.replace("删除","添加"),b1=false):
+	 		(aTmp.unshift("January(1)"),this.value=this.value.replace("添加","删除"),b1=true);
+	 		Op[0].innerHTML=aTmp.join();
+	 	};
+	 	btn[1].onclick=function(){
+	 		aTmp=getArray(Op[0].innerHTML);
+	 		b2?(aTmp.pop(),this.value=this.value.replace("删除","添加"),b2=false):
+	 		(aTmp.push("December(12)"),this.value=this.value.replace("添加","删除"),b2=true);
+	 		Op[0].innerHTML=aTmp.join();
+	 	};
+	 	btn[2].onclick=function(){
+	 		aTmp=getArray(Op[1].innerHTML);
+	 		Op[1].innerHTML=aTmp.concat(aTmp).toString().replace(/\s/g,"")
+	 	};
+	 	btn[3].onclick=function(){
+	 		aTmp=getArray(Op[1].innerHTML);
+	 		aTmp.length=10;
+	 		Op[1].innerHTML=aTmp;
+	 	};
+	 	btn[4].onclick=function(){
+	 		aTmp=["red,green,blue,white,yellow,black,brown"];
+	 		Op[2].innerHTML=aTmp.join();
+	 	};
+	 	btn[5].onclick=function(){
+	 		aTmp=getArray(Op[2].innerHTML);
+	 		aTmp.splice(0,3);
+	 		Op[2].innerHTML=aTmp.join();
+	 	};
+	 	btn[6].onclick=function(){
+	 		aTmp=getArray(Op[2].innerHTML);
+	 		aTmp.splice(1,2);
+	 		Op[2].innerHTML=aTmp.join();
+
+	 	};
+	 	btn[7].onclick=function(){
+	 		aTmp=getArray(Op[2].innerHTML);
+	 		aTmp.splice(1,0,"orange","purple");
+	 		Op[2].innerHTML=aTmp.join();
+	 	};
+	 	btn[8].onclick=function(){
+	 		aTmp=getArray(Op[2].innerHTML);
+	 		aTmp.splice(1,2,"#009900","#0000ff");
+	 		Op[2].innerHTML=aTmp.join();
+	 	};
+	 }
+	</script>
+</body>
+</html>
