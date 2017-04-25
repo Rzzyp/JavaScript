@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>阻止右键菜单</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		pre{
+			border:1px dotted black;
+			color:#f00;
+		}
+	</style>
+</head>
+<body>
+	<pre>
+document.oncontextmenu = function ()
+{
+	return false
+}
+	</pre>
+	<script type="text/javascript">
+		document.oncontextmenu = function ()
+		{
+		return false;
+		}
+	</script>
+</body>
+</html>
