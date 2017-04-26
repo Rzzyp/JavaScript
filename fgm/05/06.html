@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>自定义右键菜单</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+
+		}
+		p{
+			width:400px;
+			margin:20px auto;
+		}
+		a{
+			text-decoration: none;
+			color:black;
+		}
+		li{
+		    position: relative;
+			padding-left:24px;
+			width:100px;
+			height: 24px;
+			background: url(ico.png) no-repeat;
+		}
+
+		ul{
+			list-style: none;
+			1display: none;
+			position: absolute;
+			border:1px solid black;
+			
+		}
+		
+		li.cut{
+			background-position: 0 0;
+
+		}
+		li.copy{
+			background-position: 0 -24px;
+		}
+		li.paste{
+			background-position: 0 -48px;
+		}
+		li:hover{
+			background-color: rgba(61,61,61,0.3);
+		}
+	</style>
+</head>
+<body>
+	<p>自定义右键菜单，请在页面点击右键查看效果。</p>
+	<ul>
+		<li class="cut"> <a href="">剪切</a></li>
+		<li class="copy"> <a href="">复制</a></li>
+		<li class="paste"> </em><a href="">粘贴</a></li>
+	</ul>
+	<script type="text/javascript">
+	window.onload=function(){
+		var oul=document.getElementsByTagName('ul')[0];
+		var ali=document.getElementsByTagName("li");
+
+		document.oncontextmenu=function(event){
+			var event =event||window.event;
+			var style=oul.style;
+			style.display="block";
+			style.top=event.clientY+"px";
+			style.left=event.clientX+"px";
+			return false;
+		}
+		document.onclick=function(){
+			oul.style.display="none";
+		}
+	}
+	</script>
+</body>
+</html>
